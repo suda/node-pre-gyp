@@ -73,7 +73,7 @@ function run () {
     if (err) {
       log.error(command.name + ' error')
       log.error('stack', err.stack)
-      errorMessage()
+      node_pre_gyp.errorMessage(prog)
       log.error('not ok')
       return process.exit(1)
     }
@@ -101,19 +101,8 @@ process.on('uncaughtException', function (err) {
   process.exit(7)
 })
 
-function errorMessage () {
-  // copied from npm's lib/util/error-handler.js
-  var os = require('os')
-  log.error('System', os.type() + ' ' + os.release())
-  log.error('command', process.argv
-            .map(JSON.stringify).join(' '))
-  log.error('cwd', process.cwd())
-  log.error('node -v', process.version)
-  log.error(process.title+' -v', 'v' + prog.package.version)
-}
-
 function issueMessage () {
-  errorMessage()
+  node_pre_gyp.errorMessage(prog)
   log.error('', [ 'This is a bug in `'+process.title+'`.'
                 , 'Try to update '+process.title+' and file an issue if it does not help:'
                 , '    <https://github.com/mapbox/'+process.title+'/issues>'

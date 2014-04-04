@@ -16,7 +16,7 @@
         "host":"https://node-pre-gyp-tests.s3-us-west-1.amazonaws.com"
     },
     "scripts": {
-        "install":"node-pre-gyp install --fallback-to-build",
+        "install": "node -e \"require('node-pre-gyp').install({fallback_to_build:true})\"",
         "test":"node index.js"
     }
 }

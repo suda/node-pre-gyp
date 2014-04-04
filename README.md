@@ -95,9 +95,8 @@ This looks like:
     "dependencies"  : {
       "node-pre-gyp": "0.5.x"
     },
-    "bundledDependencies":["node-pre-gyp"],
     "scripts": {
-        "install": "node-pre-gyp install --fallback-to-build",
+        "install": "node -e \"require('node-pre-gyp').install({fallback_to_build:true})\"",
     },
     "binary": {
         "module_name": "your_module",
