@@ -26,7 +26,7 @@ function run(prog,command,args,app,opts,cb) {
     }
     final_cmd += ' ' + app.args;
     final_cmd += ' ' + args;
-    // console.log(final_cmd)
+    console.log(final_cmd)
     cp.exec(final_cmd,opts,function(err,stdout,stderr) {
         if (err) {
             var error = new Error("Command failed '" + command + "'");
@@ -103,6 +103,9 @@ describe('build', function() {
         it(app.name + ' configures ' + app.args, function(done) {
             run('node-pre-gyp', 'configure', '--fallback-to-build', app, {}, function(err,stdout,stderr) {
                 if (err) return on_error(err,stdout,stderr);
+                console.log(err);
+                console.log(stdout);
+                console.log(stderr);
                 assert.equal(stdout,'');
                 if (stderr.indexOf("child_process: customFds option is deprecated, use stdio instead") == -1) {
                     assert.equal(stderr,'');
